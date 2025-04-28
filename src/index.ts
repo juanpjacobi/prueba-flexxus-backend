@@ -1,9 +1,6 @@
-import dotenv from "dotenv";
-dotenv.config();
+import app from "./server";
+import { PORT } from "./config";
 
-const PORT = process.env.PORT || 3000;
-
-console.log(`⚡️ Iniciando servidor en modo DEV…`);
-console.log(`→ Puerto: ${PORT}`);
-
-// Aquí luego arrancarás tu app de Express
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor Express escuchando en puerto ${PORT}`);
+});
