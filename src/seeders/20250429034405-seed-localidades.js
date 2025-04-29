@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
-  up: async (queryInterface) => {
-    await queryInterface.bulkInsert(
+  up: async (qi) => {
+    await qi.bulkInsert(
       "Localidades",
       [
         {
@@ -25,11 +25,25 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          id: 4,
+          localidad: "Rosario",
+          activo: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          id: 5,
+          localidad: "Mendoza",
+          activo: true,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
   },
-  down: async (queryInterface) => {
-    await queryInterface.bulkDelete("Localidades", null, {});
+  down: async (qi) => {
+    await qi.bulkDelete("Localidades", null, {});
   },
 };

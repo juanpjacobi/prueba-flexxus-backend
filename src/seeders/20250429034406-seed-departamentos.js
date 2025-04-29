@@ -33,6 +33,13 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 5,
+          denominacion: "RRHH",
+          localidad_id: 4,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
           id: 10,
           denominacion: "Logística",
           localidad_id: 1,
