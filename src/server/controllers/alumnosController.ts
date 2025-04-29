@@ -2,10 +2,18 @@ import { Request, Response } from "express";
 import { z } from "zod";
 import { alumnosService } from "../services/alumnosService";
 
+
+
 const schema = z.object({
-  nombre: z.string().min(1),
-  edad: z.number().int().min(0),
+  nombre: z
+    .string()
+    .min(1, { message: "El nombre no puede estar vacío" })
+    .regex(/^[A-Za-zÀ-ÿ\s]+$/, { 
+      message: "El nombre solo puede contener letras y espacios" 
+    }),
+  edad: z.number().int().min(0, { message: "La edad debe ser un entero >= 0" }),
 });
+
 
 export const postAlumno = (req: Request, res: Response) => {
   const parsed = schema.safeParse(req.body);
