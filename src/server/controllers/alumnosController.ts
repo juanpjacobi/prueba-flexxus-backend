@@ -2,8 +2,6 @@ import { Request, Response } from "express";
 import { z } from "zod";
 import { alumnosService } from "../services/alumnosService";
 
-
-
 const schema = z.object({
   nombre: z
     .string()
