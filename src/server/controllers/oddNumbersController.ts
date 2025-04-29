@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
+import { oddNumbersService } from "../services/oddNumbersService";
 
 export const getOddNumbers = (_req: Request, res: Response) => {
-  const oddNumbers: number[] = [];
-  for (let i = 1; i <= 100; i += 2) {
-    oddNumbers.push(i);
+  try {
+    const oddNumbers = oddNumbersService.getOddNumbers();
+    res.json({ oddNumbers });
+  } catch (err) {
+    res.status(500).json({ error: "Error generando los números impares." });
   }
-  res.json({ oddNumbers });
 };
