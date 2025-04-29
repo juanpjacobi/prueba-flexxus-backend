@@ -1,5 +1,5 @@
 import { Op } from "sequelize";
-import { Article } from "../../models/Article";
+import { Article } from "../../models";
 
 interface ArticleFilters {
   name?: string;
