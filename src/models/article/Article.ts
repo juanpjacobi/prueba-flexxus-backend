@@ -1,6 +1,6 @@
 // src/models/Article.ts
 import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../../config/database";
 
 export class Article extends Model {
   public id!: number;
