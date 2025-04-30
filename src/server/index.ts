@@ -6,10 +6,7 @@ import cors from 'cors';
 import { authenticateToken } from "./middlware/auth";
 import authRouter from "./routes/auth.routes";
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://prueba-flxxs.netlify.app/'
-];
+
 
 const app = express();
 
@@ -17,18 +14,22 @@ const app = express();
 
 app.use(helmet());
 
+const allowedLocal = 'http://localhost:5173';
+
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS: Origen ${origin} no permitido`));
+  origin: (incomingOrigin, callback) => {
+    if (
+      !incomingOrigin ||
+      incomingOrigin === allowedLocal ||
+      incomingOrigin.endsWith('.netlify.app')
+    ) {
+      return callback(null, true);
     }
+    console.warn(`🚫 CORS bloqueo para Origin=${incomingOrigin}`);
+    return callback(new Error(`Origin ${incomingOrigin} no permitido por CORS`));
   },
-  methods: ['GET','POST','PATCH','DELETE','OPTIONS'],
   credentials: true,
 }));
-
 app.use(express.json());
 //rutas publicas
 app.use('/api/auth', authRouter);
