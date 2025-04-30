@@ -8,7 +8,7 @@ import authRouter from "./routes/auth.routes";
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://prueba-flexxus-frontend.netlify.app'
+  'https://prueba-flxxs.netlify.app/'
 ];
 
 const app = express();
