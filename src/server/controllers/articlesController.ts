@@ -17,17 +17,24 @@ const updateSchema = z.object({
   ),
 });
 const getSchema = z.object({
-  name:      z.string().optional(),
-  nameExact: z.string().optional(),
-  active:    z.preprocess(
-    (val) =>
-      val === "true"
-        ? true
-        : val === "false"
-        ? false
-        : undefined,
-    z.boolean().optional()
-  ),
+  name:        z.string().optional(),
+  nameExact:   z.string().optional(),
+  brand:       z.string().optional(),
+  brandExact:  z.string().optional(),
+  active:      z.preprocess(val => val === 'true', z.boolean()).optional(),
+
+  updatedExact: z.preprocess(
+    val => val ? new Date(val as string) : undefined,
+    z.date()
+  ).optional(),
+  updatedFrom: z.preprocess(
+    val => val ? new Date(val as string) : undefined,
+    z.date()
+  ).optional(),
+  updatedTo: z.preprocess(
+    val => val ? new Date(val as string) : undefined,
+    z.date()
+  ).optional(),
 });
 
 export const getArticles = async (req: Request, res: Response): Promise<void> => {

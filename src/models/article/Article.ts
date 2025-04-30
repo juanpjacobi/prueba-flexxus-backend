@@ -6,7 +6,6 @@ export class Article extends Model {
   public id!: number;
   public name!: string;
   public brand!: string;
-  public dateMod!: Date;
   public active!: boolean;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -26,11 +25,6 @@ Article.init(
     brand: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    dateMod: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
     },
     active: {
       type: DataTypes.BOOLEAN,

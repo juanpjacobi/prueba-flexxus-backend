@@ -17,11 +17,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      dateMod: {
-        type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
-      },
       active: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
