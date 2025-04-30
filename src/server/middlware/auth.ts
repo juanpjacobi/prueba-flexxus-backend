@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-const SECRET = process.env.JWT_SECRET || 'MY-SECRET1245';
+const SECRET = process.env.JWT_SECRET || "CAMBIA_ESTE_SECRETO";
 
 export interface AuthRequest extends Request {
   user?: { id: number; username: string };
