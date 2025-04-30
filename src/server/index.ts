@@ -8,9 +8,7 @@ import authRouter from "./routes/auth.routes";
 
 const app = express();
 
-app.get('/api/ping', (_req, res) => {
-  res.json({ pong: Date.now() });
-});
+
 
 app.use(helmet());
 
@@ -35,6 +33,10 @@ app.use((req, res) => {
 app.use((err: any, req: any, res: any, next: any) => {
   console.error('🔥 Unhandled error:', err);
   res.status(500).json({ message: 'Internal Server Error' });
+});
+
+app.get('/api/ping', (_req, res) => {
+  res.json({ pong: Date.now() });
 });
 
 export default app;
