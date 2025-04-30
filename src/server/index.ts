@@ -8,6 +8,10 @@ import authRouter from "./routes/auth.routes";
 
 const app = express();
 
+app.get('/api/ping', (_req, res) => {
+  res.json({ pong: Date.now() });
+});
+
 app.use(helmet());
 
 app.use(cors({
@@ -22,8 +26,15 @@ app.use('/api/auth', authRouter);
 
 app.use('/api', authenticateToken, apiRouter);
 
-app.get('/', (_req, res) => {
-  res.json({ status: 'UP' });
+app.use((req, res) => {
+  console.warn(`⚠️  Ruta no encontrada: ${req.method} ${req.originalUrl}`);
+  res.status(404).json({ message: 'Not found' });
+});
+
+// Manejador de errores
+app.use((err: any, req: any, res: any, next: any) => {
+  console.error('🔥 Unhandled error:', err);
+  res.status(500).json({ message: 'Internal Server Error' });
 });
 
 export default app;
