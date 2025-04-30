@@ -8,7 +8,8 @@ export const login = (req: Request, res: Response) => {
   if (username === "admin" && password === "1234") {
     const user = { id: 1, username };
     const token = jwt.sign({ user }, SECRET, { expiresIn: "1h" });
-    res.json({ token, user });
+    return res.json({ token, user });
+
   }
-  res.status(401).json({ message: "Credenciales inválidas" });
+  return res.status(401).json({ message: "Credenciales inválidas" });
 };
