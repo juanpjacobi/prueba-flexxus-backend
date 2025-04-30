@@ -22,4 +22,8 @@ app.use('/api/auth', authRouter);
 
 app.use('/api', authenticateToken, apiRouter);
 
+app.get('/', (_req, res) => {
+  res.json({ status: 'UP' });
+});
+
 export default app;
